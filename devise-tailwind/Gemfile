@@ -76,3 +76,4 @@ end
 
 # devise fix
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
+gem 'devise-tailwindcssed'
