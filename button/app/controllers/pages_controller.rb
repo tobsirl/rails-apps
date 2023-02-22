@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   end
 
   def upvote
-    puts "ID: #{params[:id]}"
+    @post = Post.find(params[:id])
+    
   end
 end
