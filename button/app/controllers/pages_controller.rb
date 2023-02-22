@@ -5,6 +5,9 @@ class PagesController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    
+    # Increment the upvotes column by 1
+    @post.increment!(:upvote)
+    # Redirect to the root path
+    redirect_to root_path
   end
 end
