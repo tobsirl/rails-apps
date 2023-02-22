@@ -4,4 +4,5 @@
 <h1>This has <%= pluralize(@post.upvote, "Upvotes")  %></h1>
 
 <%= button_to "Upvote First Post", upvote_page_path(@post), method: :put %>
+<%= button_to "Downvote First Post", downvote_page_path(@post), method: :put %>
 
