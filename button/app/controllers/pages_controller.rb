@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @posts = Post.first
+    @post = Post.first if Post.any?
   end
 end
