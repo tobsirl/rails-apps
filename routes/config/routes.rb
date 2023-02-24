@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/index'
   root "posts#index"
   # resources :posts
 
@@ -20,7 +21,16 @@ Rails.application.routes.draw do
   # Update post route
   patch "/posts/:id", to: "posts#update"
 
+  # Patch post route
+  put "/posts/:id", to: "posts#update"
+
   # Delete post route
   delete "/posts/:id", to: "posts#destroy"
+
+  resources :posts do
+    # Nested comments route
+    # all comments routes will be prefixed with /posts/:post_id
+    get "/comments", to: "comments#index"
+  end
 
 end
