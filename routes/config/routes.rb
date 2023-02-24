@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   patch "/posts/:id", to: "posts#update"
 
   # Delete post route
+  delete "/posts/:id", to: "posts#destroy"
 
 end
