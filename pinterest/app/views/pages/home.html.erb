@@ -1,10 +1,10 @@
 <div>
   <h1 class="font-bold text-4xl text-blue-500">Pages#home</h1>
   <p>Pinterest Auth Flow</p>
-  <%= button_to "Pinterest", pinterest_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <%= link_to "Pinterest", pinterest_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   <% if current_user %>
     <p>Logged in as <%= current_user.email %></p>
-    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete} %>
+    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete}, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   <% else %>
     <%= link_to "Login", new_user_session_path %>
     <%= link_to "Signup", new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
