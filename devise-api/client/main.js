@@ -6,8 +6,8 @@ let access_token;
 let refresh_token = localStorage.getItem('refresh_token');
 let resourse_owner;
 
-const signupForm = document.getElementById('sign_up-form');
-const signinForm = document.getElementById('sign_in-form');
+const signupForm = document.getElementById('sign_up_form');
+const signinForm = document.getElementById('sign_in_form');
 
 signupForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -46,17 +46,21 @@ async function handleAuthResponse(response) {
   alert(data.message);
 }
 
+function nullOrUndefined(itemToCheck) {
+  return itemToCheck === null || itemToCheck === undefined;
+}
+
 async function userSession() {
   await refreshAccessToken();
   await requestNewAccessToken();
   window.access_token = access_token;
   if (nullOrUndefined(access_token)) {
-    document.getElementById('sign_in-form').style.display = 'block';
-    document.getElementById('sign_up-form').style.display = 'block';
+    document.getElementById('sign_in_form').style.display = 'block';
+    document.getElementById('sign_up_form').style.display = 'block';
     document.getElementById('sign_out').style.display = 'none';
   } else {
-    document.getElementById('sign_in-form').style.display = 'none';
-    document.getElementById('sign_up-form').style.display = 'none';
+    document.getElementById('sign_in_form').style.display = 'none';
+    document.getElementById('sign_up_form').style.display = 'none';
     document.getElementById('sign_out').style.display = 'block';
   }
 
