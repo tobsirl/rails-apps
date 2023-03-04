@@ -45,3 +45,20 @@ async function handleAuthResponse(response) {
   }
   alert(data.message);
 }
+
+async function userSession() {
+  await refreshAccessToken();
+  await requestNewAccessToken();
+  window.access_token = access_token;
+  if (nullOrUndefined(access_token)) {
+    document.getElementById('sign_in-form').style.display = 'block';
+    document.getElementById('sign_up-form').style.display = 'block';
+    document.getElementById('sign_out').style.display = 'none';
+  } else {
+    document.getElementById('sign_in-form').style.display = 'none';
+    document.getElementById('sign_up-form').style.display = 'none';
+    document.getElementById('sign_out').style.display = 'block';
+  }
+
+  getUser();
+}
