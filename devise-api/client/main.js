@@ -177,3 +177,15 @@ async function requestNewAccessToken() {
     userSession();
   }
 }
+
+await userSession().then(() => {
+  console.log(
+    '%cUser session complete. Begin application logic',
+    'color: green'
+  );
+  if (resource_owner) {
+    userCanAccess();
+  } else {
+    console.log('No user');
+  }
+});
