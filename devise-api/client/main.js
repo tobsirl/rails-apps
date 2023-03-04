@@ -32,3 +32,16 @@ signupForm.addEventListener('submit', async (e) => {
   await handleAuthResponse(response);
   userSession();
 });
+
+async function handleAuthResponse(response) {
+  const data = await response.json();
+  if (response.ok) {
+    access_token = data.access_token;
+    refresh_token = data.refresh_token;
+    resourse_owner = data.resourse_owner;
+    localStorage.setItem('refresh_token', refresh_token);
+    localStorage.setItem('resourse_owner', JSON.stringify(resourse_owner));
+    return;
+  }
+  alert(data.message);
+}
