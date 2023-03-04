@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3000/users/tokens';
 
 let access_token;
 let refresh_token = localStorage.getItem('refresh_token');
-let resourse_owner;
+let resource_owner;
 
 const signupForm = document.getElementById('sign_up_form');
 const signinForm = document.getElementById('sign_in_form');
@@ -22,11 +22,15 @@ signupForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  const response = await fetch(`${API_URL}/signup`, {
+  const response = await fetch(`${API_URL}/sign_up`, {
     method: 'POST',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({
+      email,
+      password,
+    }),
     headers: { 'Content-Type': 'application/json' },
   });
+  debugger;
 
   // Then store the token in localStorage
   await handleAuthResponse(response);
@@ -90,9 +94,9 @@ async function handleAuthResponse(response) {
   if (response.ok) {
     access_token = data.access_token;
     refresh_token = data.refresh_token;
-    resourse_owner = data.resourse_owner;
+    resource_owner = data.resource_owner;
     localStorage.setItem('refresh_token', refresh_token);
-    localStorage.setItem('resourse_owner', JSON.stringify(resourse_owner));
+    localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
     return;
   }
   alert(data.message);
@@ -120,18 +124,18 @@ async function userSession() {
 }
 
 function getUser() {
-  let resourse_owner = localStorage.getItem('resourse_owner');
-  if (nullOrUndefined(resourse_owner)) {
+  let resource_owner = localStorage.getItem('resource_owner');
+  if (nullOrUndefined(resource_owner)) {
     return;
   }
-  resourse_owner = JSON.parse(resourse_owner);
+  resource_owner = JSON.parse(resource_owner);
   toggleUserDiv();
 }
 
 function toggleUserDiv() {
-  if (resourse_owner) {
+  if (resource_owner) {
     const user = document.getElementById('user');
-    user.innerHTML = `Welcome ${resourse_owner.email}`;
+    user.innerHTML = `Welcome ${resource_owner.email}`;
     user.style.display = 'block';
   } else {
     user.innerHTML = '';
@@ -150,9 +154,9 @@ signoutButton.addEventListener('click', async (e) => {
 function resetTokens() {
   access_token = null;
   refresh_token = null;
-  resourse_owner = null;
+  resource_owner = null;
   localStorage.removeItem('refresh_token');
-  localStorage.removeItem('resourse_owner');
+  localStorage.removeItem('resource_owner');
 }
 
 async function requestNewAccessToken() {
