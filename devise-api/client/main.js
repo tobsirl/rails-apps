@@ -103,7 +103,7 @@ function nullOrUndefined(itemToCheck) {
 }
 
 async function userSession() {
-  await refreshAccessToken();
+  await refreshToken();
   await requestNewAccessToken();
   window.access_token = access_token;
   if (nullOrUndefined(access_token)) {
@@ -153,4 +153,27 @@ function resetTokens() {
   resourse_owner = null;
   localStorage.removeItem('refresh_token');
   localStorage.removeItem('resourse_owner');
+}
+
+async function requestNewAccessToken() {
+  if (nullOrUndefined(refresh_token)) {
+    return;
+  }
+  if (access_token) {
+    return;
+  }
+  try {
+    const response = await fetch(`${API_URL}/refresh`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${refresh_token}`,
+      },
+    });
+    handleAuthResponse(response);
+  } catch (err) {
+    console.log('Error refreshing token: ', err);
+    resetTokens();
+    userSession();
+  }
 }
