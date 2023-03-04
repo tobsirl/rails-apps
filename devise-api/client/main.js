@@ -102,3 +102,11 @@ function toggleUserDiv() {
     user.style.display = 'none';
   }
 }
+
+const signoutButton = document.getElementById('sign_out');
+signoutButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  console.log("Logging out");
+  resetTokens();
+  userSession();
+});
