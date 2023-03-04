@@ -33,6 +33,42 @@ signupForm.addEventListener('submit', async (e) => {
   userSession();
 });
 
+async function refreshToken() {
+  refresh_token = localStorage.getItem('refresh_token');
+  if (nullOrUndefined(refresh_token)) {
+    return;
+  }
+  console.log(refresh_token);
+
+  try {
+    let response = await fetch(`${API_URL}/refresh`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${refresh_token}`,
+      },
+    });
+    if (!response.ok) {
+      if (response.status === 401) {
+        // Handle the error, such as redirecting to the login page
+      } else {
+        throw new Error(response.statusText);
+      }
+    }
+    let data = await response.json();
+    console.log('Setting access token to: ', data.token);
+    localStorage.setItem('resource_owner', JSON.stringify(data.resource_owner));
+    localStorage.setItem('refresh_token', data.refresh_token);
+    access_token = data.token;
+    refresh_token = data.refresh_token;
+    resource_owner = data.resource_owner;
+  } catch (err) {
+    console.log('Error refreshing token: ', err);
+    resetTokens();
+    userSession();
+  }
+}
+
 // Sign in
 signinForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -106,7 +142,7 @@ function toggleUserDiv() {
 const signoutButton = document.getElementById('sign_out');
 signoutButton.addEventListener('click', async (e) => {
   e.preventDefault();
-  console.log("Logging out");
+  console.log('Logging out');
   resetTokens();
   userSession();
 });
