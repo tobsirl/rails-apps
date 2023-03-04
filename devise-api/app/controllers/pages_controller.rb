@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def restricted
     devise_api_token = current_devise_api_token
-    # render response
+    # return json response with user email
     if devise_api_token
       render json: { message: "You are logged in as #{devise_api_token.resourse_owner.email}" }, status: :ok
     else
