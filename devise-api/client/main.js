@@ -75,3 +75,14 @@ function getUser() {
   stored_resourse_owner = JSON.parse(stored_resourse_owner);
   toggleUserDiv();
 }
+
+function toggleUserDiv() {
+  if (stored_resourse_owner) {
+    const user = document.getElementById('user');
+    user.innerHTML = `Welcome ${stored_resourse_owner.email}`;
+    user.style.display = 'block';
+  } else {
+    user.innerHTML = '';
+    user.style.display = 'none';
+  }
+}
