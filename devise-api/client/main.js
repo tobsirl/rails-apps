@@ -84,18 +84,18 @@ async function userSession() {
 }
 
 function getUser() {
-  let stored_resourse_owner = localStorage.getItem('resourse_owner');
-  if (nullOrUndefined(stored_resourse_owner)) {
+  let resourse_owner = localStorage.getItem('resourse_owner');
+  if (nullOrUndefined(resourse_owner)) {
     return;
   }
-  stored_resourse_owner = JSON.parse(stored_resourse_owner);
+  resourse_owner = JSON.parse(resourse_owner);
   toggleUserDiv();
 }
 
 function toggleUserDiv() {
-  if (stored_resourse_owner) {
+  if (resourse_owner) {
     const user = document.getElementById('user');
-    user.innerHTML = `Welcome ${stored_resourse_owner.email}`;
+    user.innerHTML = `Welcome ${resourse_owner.email}`;
     user.style.display = 'block';
   } else {
     user.innerHTML = '';
@@ -110,3 +110,11 @@ signoutButton.addEventListener('click', async (e) => {
   resetTokens();
   userSession();
 });
+
+function resetTokens() {
+  access_token = null;
+  refresh_token = null;
+  resourse_owner = null;
+  localStorage.removeItem('refresh_token');
+  localStorage.removeItem('resourse_owner');
+}
