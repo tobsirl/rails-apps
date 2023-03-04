@@ -33,6 +33,22 @@ signupForm.addEventListener('submit', async (e) => {
   userSession();
 });
 
+// Sign in
+signinForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('signin-email').value;
+  const password = document.getElementById('signin-password').value;
+
+  const response = await fetch(`${API_URL}/signin`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  await handleAuthResponse(response);
+  userSession();
+});
+
 async function handleAuthResponse(response) {
   const data = await response.json();
   if (response.ok) {
