@@ -7,7 +7,22 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>Hello Vite!</h1>
+      <!-- Display user's email if logged in -->
+      <h3 id="user"></h3>
+      <!-- Form to sign up, sign in, or logout depending on user session -->
+      <form id="sign_up_form">
+        <input type="text" id="signup-emial" placeholder="Email" />
+        <input type="password" id="signup-password" placeholder="Password" />
+        <input
+          type="password"
+          id="signup-password-confirm"
+          placeholder="Confirm Password"
+        />
+        <button type="submit" id="submit">Submit</button>
+      </form>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
