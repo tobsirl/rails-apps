@@ -66,3 +66,12 @@ async function userSession() {
 
   getUser();
 }
+
+function getUser() {
+  let stored_resourse_owner = localStorage.getItem('resourse_owner');
+  if (nullOrUndefined(stored_resourse_owner)) {
+    return;
+  }
+  stored_resourse_owner = JSON.parse(stored_resourse_owner);
+  toggleUserDiv();
+}
