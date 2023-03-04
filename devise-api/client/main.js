@@ -178,6 +178,27 @@ async function requestNewAccessToken() {
   }
 }
 
+async function userCanAccess() {
+  if (nullOrUndefined(access_token)) {
+    return;
+  }
+  const response = await fetch(`http://localhost:3000/pages/restricted`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  const data = await response.json();
+
+  console.log('%c' + data.message, 'color: cyan');
+  if (data.error) {
+    console.log('Error: ', data.error);
+    resetTokens();
+    userSession();
+  }
+}
+
 await userSession().then(() => {
   console.log(
     '%cUser session complete. Begin application logic',
