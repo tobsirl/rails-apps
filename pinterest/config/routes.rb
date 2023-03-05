@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # pinterest index controller
   get 'pinterest/index' => 'pinterest#index'
-  get 'pinterest/oauth_response' => 'pinterest#oauth_response'
+  # get requrest to /oauth/pinterest/oauth_response
+  get 'oauth/pinterest/oauth_response' => 'pinterest#oauth_response'
   get 'pinterest/auth' => 'pinterest#index'
   root 'pages#home'
   devise_for :users
