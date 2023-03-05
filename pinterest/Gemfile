@@ -79,3 +79,6 @@ gem "devise"
 
 # Add taildwindcss
 gem 'devise-tailwindcssed'
+
+# dotenv-rails
+gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
