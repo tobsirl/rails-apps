@@ -32,5 +32,4 @@ volumes:
   postgres_data: {}
   app-storage: {}
 networks:
-  demo_default:
-    external: true
+  demo_default: {}
