@@ -9,8 +9,9 @@ class PinterestController < ApplicationController
   end
 
   def oauth_response
-    @code = params[:code]
-    @state = params[:state]
+    redirect_uri = "http://localhost:3000/oauth/pinterest/oauth_response/"
+    code = params[:code]
+    state = params[:state]
     client_id = ENV['PINTEREST_CLIENT_ID']
     client_secret = ENV['PINTEREST_CLIENT_SECRET']
     # base64 encode client_id:client_secret
@@ -23,14 +24,19 @@ class PinterestController < ApplicationController
     # get access token
     # post request to https://api.pinterest.com/v5/oauth/token
     @response = HTTParty.post('https://api.pinterest.com/v5/oauth/token',
-      headers: {
+      :headers => {
         'Content-Type' => 'application/x-www-form-urlencoded',
         'Authorization' => authorization,
         'Accept' => 'application/json'
       },
-      body: {
-        
-      })
+      :body => {
+        :grant_type => "authorization_code",
+        :code => code,
+        :redirect_uri => redirect_uri
+      },
+      :debug_output => $stdout)
+
+
 
   end
 end
