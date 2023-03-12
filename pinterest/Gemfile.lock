@@ -104,8 +104,8 @@ GEM
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    httparty (0.13.7)
-      json (~> 1.8)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -118,7 +118,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (1.8.6)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -242,7 +241,7 @@ DEPENDENCIES
   devise
   devise-tailwindcssed
   dotenv-rails (~> 2.1, >= 2.1.1)
-  httparty (~> 0.13.7)
+  httparty (~> 0.21.0)
   importmap-rails
   jbuilder
   puma (~> 5.0)

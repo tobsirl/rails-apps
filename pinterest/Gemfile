@@ -84,4 +84,4 @@ gem 'devise-tailwindcssed'
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 
 # Add httparty
-gem 'httparty', '~> 0.13.7'
+gem 'httparty', '~> 0.21.0'
