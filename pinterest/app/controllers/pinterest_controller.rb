@@ -24,18 +24,28 @@ class PinterestController < ApplicationController
     # get access token
     # post request to https://api.pinterest.com/v5/oauth/token
     @response = HTTParty.post("https://api.pinterest.com/v5/oauth/token", 
-      :headers => { 
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Authorization' => authorization,
-        'Accept' => 'application/json'
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': authorization,
+        'Accept': 'application/json'
       },
-      :body => {
-        :grant_type => "authorization_code",
-        :code => code,
-        :redirect_uri => redirect_uri
+      body: {
+        grant_type: "authorization_code",
+        code: code,
+        redirect_uri: redirect_uri
       },
-      :debug_output => $stdout
+      debug_output: $stdout
     )
+
+    access_token = @response['access_token']
+    refresh_token = @response['refresh_token']
+    
+
+    # status code from response
+    puts "status code: #{@response.code}"
+    puts "access_token: #{access_token}"
+    puts "refresh_token: #{refresh_token}"
+  
 
 
 
