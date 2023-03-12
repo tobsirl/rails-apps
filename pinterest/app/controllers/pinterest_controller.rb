@@ -9,14 +9,28 @@ class PinterestController < ApplicationController
   end
 
   def oauth_response
-    puts "************************************************************************************************"
-    puts "oauth_response"
-    puts "params: #{params}"
     @code = params[:code]
-    puts "code: #{@code}"
-    # get state param
     @state = params[:state]
     client_id = ENV['PINTEREST_CLIENT_ID']
     client_secret = ENV['PINTEREST_CLIENT_SECRET']
+    # base64 encode client_id:client_secret
+    app_id_secret = Base64.strict_encode64("#{client_id}:#{client_secret}")
+    puts "app_id_secret: #{app_id_secret}"
+    authorization = "Basic #{app_id_secret}"
+    
+
+
+    # get access token
+    # post request to https://api.pinterest.com/v5/oauth/token
+    @response = HTTParty.post('https://api.pinterest.com/v5/oauth/token',
+      headers: {
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'Authorization' => authorization,
+        'Accept' => 'application/json'
+      },
+      body: {
+        
+      })
+
   end
 end
