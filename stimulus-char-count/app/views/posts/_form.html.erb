@@ -6,7 +6,13 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <div data-controller="character-counter">
-      <%= f.input :body %>
+      <%= f.input :body, as: :text, input_html: {
+        data: {
+          character_counter_target: "input"
+        }
+      } %>
+      <div class="character-counter" data-character-counter-target="counter">
+        <span data-character-counter-target="count">0</span> / 100
     </div>
   </div>
 
