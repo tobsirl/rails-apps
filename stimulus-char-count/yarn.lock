@@ -292,6 +292,11 @@ sass@^1.60.0:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+stimulus-character-counter@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/stimulus-character-counter/-/stimulus-character-counter-4.2.0.tgz#6e7782c2c525ccc661ffbb39a7b15085a3a42a21"
+  integrity sha512-5ZN5wFlOnIkZRSiwtC7zb880yvE4O/4+KOhdg0z6zQet4iLA2+W0NJvHX5teW6tl5M1IGzHrgOtuEsUVfQ2TrA==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"
