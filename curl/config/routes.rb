@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'index', to: 'home#index'
 
   post 'post_example', to: 'home#post_example'
