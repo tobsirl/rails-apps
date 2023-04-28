@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  protect_from_forgery with: :null_session
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
   def edit
   end
 
+  # curl -X POST -d '{"post": {"title": "first post", "published: "false"}}' http://127.0.0.1:3000/posts.json
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
