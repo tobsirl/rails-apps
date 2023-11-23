@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def edit
   end
 
-  # curl -X POST -d '{"post": {"title": "first post", "published: "false"}}' http://127.0.0.1:3000/posts.json
+  # curl -X POST -H "Content-Type: application/json" -d '{"post": {"title": "first post", "published: "false"}}' http://127.0.0.1:3000/posts.json
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
